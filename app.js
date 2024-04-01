@@ -9,7 +9,16 @@ app.set('view engine', 'ejs');
 // Установка пути к папке с представлениями
 app.set('views', path.join(__dirname, 'views'));
  
+app.get('/', (req, res) => {
+  res.render('index'); // Рендерим шаблон index.ejs
+});
 
+// Маршрут для обработки запроса поиска
+app.get('/search', (req, res) => {
+  const query = req.query.query; // Получаем значение параметра запроса "query"
+  // Здесь можно выполнить действия по поиску
+  res.send(`Searching for: ${query}`);
+});
 
 // Middleware для обработки JSON и статических файлов
 app.use(express.json());
